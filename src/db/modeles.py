@@ -32,6 +32,22 @@ class Tag:
     self.slug=slug
     self.description=description
 
+    #récupérer tous les tags  
+    def recupérer_tous():
+       pass
+
+    #enregistrer tags
+    def enregistrer_tags():
+       pass
+
+    #recuperer tous les posts liés à un tag   
+    def recuperer_posts_tags(id):
+       pass
+
+    #supprimer tags
+    def delete_tag(id):
+      pass
+
 # classe de gestion des posts
 class Post:
     def __init__(self, id, slug, contenu, statut, views, tags, titre, id_auteur, created_at):
@@ -66,10 +82,22 @@ class Post:
        pass
 
 class Commentaire:
- def __init__(self,id,contenu,id_post,id_auteur,id_parent,created_at):
-  self.id=id
-  self.contenu=contenu
-  self.id_post=id_post
-  self.id_auteur=id_auteur
-  self.id_parent=id_parent
-  self.created_at=created_at
+    def __init__(self,id,contenu,id_post,id_auteur,id_parent,created_at):
+        self.id=id
+        self.contenu=contenu
+        self.id_post=id_post
+        self.id_auteur=id_auteur
+        self.id_parent=id_parent
+        self.created_at=created_at
+
+        #supprimer un commentaire d'un post
+        def delete_comment(id):
+           pass
+
+        #enregistrer un commentaire d'un post
+        def enregistrer_commentaire(id_post,id):
+           pass
+
+        #récupérer tous les commentaires d'un Post
+        def recuperer_commentaire(id_post):
+           pass
