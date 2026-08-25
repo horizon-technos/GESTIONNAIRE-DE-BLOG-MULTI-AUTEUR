@@ -1,5 +1,7 @@
+from database import Modele
+
 # classe liee a un utilisateur
-class Utilisateur:
+class Utilisateur(Modele):
     def __init__(self, id, nom, hashpass, role, url_photo_profil, created_at, refresh_token):
         self.id = id
         self.nom = nom
@@ -25,7 +27,7 @@ class Utilisateur:
     def recreer_token_refresh():
        pass
 
-class Tag:
+class Tag(Modele):
   def __init__(self,id,nom,slug,description):
     self.id=id
     self.nom=nom
@@ -49,7 +51,7 @@ class Tag:
       pass
 
 # classe de gestion des posts
-class Post:
+class Post(Modele):
     def __init__(self, id, slug, contenu, statut, views, tags, titre, id_auteur, created_at):
         self.id = id
         self.slug = slug
@@ -81,7 +83,7 @@ class Post:
     def supprime_post(id):
        pass
 
-class Commentaire:
+class Commentaire(Modele):
     def __init__(self,id,contenu,id_post,id_auteur,id_parent,created_at):
         self.id=id
         self.contenu=contenu
