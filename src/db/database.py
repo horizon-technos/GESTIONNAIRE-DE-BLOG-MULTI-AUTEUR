@@ -40,10 +40,7 @@ class Modele:
     def _get_colones(connecteur):
         hints = get_type_hints(connecteur)
         parametres_initialisation = inspect.signature(connecteur.__init__).parameters
-        print(hints)
-        print(parametres_initialisation)
         parametres_ordonnes = [p for p in parametres_initialisation if p != 'self']
-        print(parametres_ordonnes)
 
         colones = {}
         for param in parametres_ordonnes:
@@ -160,4 +157,9 @@ conn = psycopg2.connect(
     user='admin',
     password='admin2026' 
 )
+
+cur = conn.cursor()
+cur.execute("SELECT 1")
+resultat = cur.fetchone()
+print("Connecte !", resultat)
 

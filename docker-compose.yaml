@@ -1,28 +1,24 @@
-version: '3.8'
+version: "3.8"
 
 services:
-    bd:
-        container_name: base_dedonne
-        image: postgres:14.24-alpine3.23
-        environment:
-            POSTGRES_DB: ${POSTGRES_DB}
-            POSTGRES_USER: ${POSTGRES_USER}
-            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-        ports: 
-            - "5432:5432"    
-        volumes:
-            - db_volume:/var/lib/postgresql/data
-            - ./db/migrations/init.sql:/docker-entrypoint-init.d/init.sql:ro
-        networks:
-            - reseau_blog
-            
+  bd:
+    container_name: base_dedonne
+    image: postgres:14.24-alpine3.23
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+      - ./src/db/migrations/init.sql:/docker-entrypoint-init.d/init.sql:ro
+    networks:
+      - reseau_blog
 
 volumes:
-    db_volume:
+  db_volume:
 
 networks:
-    reseau_blog:
-        driver: bridge
-
-            
-
+  reseau_blog:
+    driver: bridge
