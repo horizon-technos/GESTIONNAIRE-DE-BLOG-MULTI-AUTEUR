@@ -1,5 +1,3 @@
-
-
 types =['INTEGER','FLOAT','TEXT','VARCHAR','SERIAL','DATETIME']
 sql={
   "int":"INTEGER",

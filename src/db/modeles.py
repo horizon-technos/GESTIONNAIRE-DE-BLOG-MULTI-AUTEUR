@@ -1,58 +1,93 @@
-from database import Modele
+from orm.utilitaires import Modele
 
-# classe liee a un utilisateur
+# ------------------------------------------------------------
+# 1. UTILISATEUR
+# ------------------------------------------------------------
 class Utilisateur(Modele):
-    def __init__(self, id, nom, hashpass, role, url_photo_profil, created_at, refresh_token):
+    id: int
+    nom: str
+    hashpass: str
+    role: str
+    url_photo_profil: str
+    created_at: str
+    refresh_token: str
+    
+    def __init__(
+        self,
+        id: int,
+        nom: str,
+        hashpass: str,
+        role: str,
+        url_photo_profil: str,
+        created_at: str,
+        refresh_token: str
+    ):
         self.id = id
         self.nom = nom
         self.hashpass = hashpass
         self.role = role
         self.url_photo_profil = url_photo_profil
         self.created_at = created_at
-        self.refrsh_token = refresh_token 
+        self.refresh_token = refresh_token
 
-    # fonction d'enregistrement dutilisateur
-    def enregistrer():
-       pass
+    def enregistrer(self):
+        pass
 
-    # fonction connexion
-    def connexion():
-       pass
+    def connexion(self):
+        pass
 
-    # fonction de recuperation des infos
-    def recupere_infos():
-       pass
+    def recupere_infos(self):
+        pass
 
-    # fonction de creation de nouveau token de rafraichissement
-    def recreer_token_refresh():
-       pass
+    def recreer_token_refresh(self):
+        pass
 
+
+# ------------------------------------------------------------
+# 2. TAG
+# ------------------------------------------------------------
 class Tag(Modele):
-  def __init__(self,id,nom,slug,description):
-    self.id=id
-    self.nom=nom
-    self.slug=slug
-    self.description=description
+    def __init__(
+        self,
+        id: int,
+        nom: str,
+        slug: str,
+        description: str
+    ):
+        self.id = id
+        self.nom = nom
+        self.slug = slug
+        self.description = description
 
-    #récupérer tous les tags  
-    def recupérer_tous():
-       pass
+    def recupérer_tous(self):
+        pass
 
-    #enregistrer tags
-    def enregistrer_tags():
-       pass
+    def enregistrer_tags(self):
+        pass
 
-    #recuperer tous les posts liés à un tag   
-    def recuperer_posts_tags(id):
-       pass
+    def recuperer_posts_tags(self, id):
+        pass
 
-    #supprimer tags
-    def delete_tag(id):
-      pass
+    def delete_tag(self, id):
+        pass
 
-# classe de gestion des posts
+
+# ------------------------------------------------------------
+# 3. POST
+# ------------------------------------------------------------
 class Post(Modele):
-    def __init__(self, id, slug, contenu, statut, views, tags, titre, id_auteur, created_at):
+    def __init__(
+        self,
+        id: int,
+        slug: str,
+        contenu: str,
+        statut: str,
+        views: int,
+        tags: str,
+        titre: str,
+        id_auteur: int,
+        created_at: str
+    ):
         self.id = id
         self.slug = slug
         self.contenu = contenu
@@ -61,45 +96,49 @@ class Post(Modele):
         self.tags = tags
         self.titre = titre
         self.id_auteur = id_auteur
-        self.created_at = created_at 
+        self.created_at = created_at
 
-    # fonction GET posts
-    def recuperer_tous():
-       pass
+    def recuperer_tous(self):
+        pass
 
-    # fonction GET post unique
-    def recupere_post(id):
-       pass
+    def recupere_post(self, id):
+        pass
 
-    # fonction POST enregistrer post
-    def enregister():
-       pass
+    def enregistrer(self):
+        pass
 
-    # fonction PUT update post
-    def update_post(id):
-       pass
+    def update_post(self, id):
+        pass
 
-    # fonction DELETE supprime post
-    def supprime_post(id):
-       pass
+    def supprime_post(self, id):
+        pass
 
+
+# ------------------------------------------------------------
+# 4. COMMENTAIRE
+# ------------------------------------------------------------
 class Commentaire(Modele):
-    def __init__(self,id,contenu,id_post,id_auteur,id_parent,created_at):
-        self.id=id
-        self.contenu=contenu
-        self.id_post=id_post
-        self.id_auteur=id_auteur
-        self.id_parent=id_parent
-        self.created_at=created_at
+    def __init__(
+        self,
+        id: int,
+        contenu: str,
+        id_post: int,
+        id_auteur: int,
+        id_parent: int,
+        created_at: str
+    ):
+        self.id = id
+        self.contenu = contenu
+        self.id_post = id_post
+        self.id_auteur = id_auteur
+        self.id_parent = id_parent
+        self.created_at = created_at
 
-        #supprimer un commentaire d'un post
-        def delete_comment(id):
-           pass
+    def delete_comment(self, id):
+        pass
 
-        #enregistrer un commentaire d'un post
-        def enregistrer_commentaire(id_post,id):
-           pass
+    def enregistrer_commentaire(self, id_post, id):
+        pass
 
-        #récupérer tous les commentaires d'un Post
-        def recuperer_commentaire(id_post):
-           pass
+    def recuperer_commentaire(self, id_post):
+        pass
