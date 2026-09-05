@@ -1,19 +1,58 @@
-from modeles import Utilisateur
-from orm.generateur_sql import GenerateurSQL
+from orm_ver_alt.utilitaires import Foreign_key
+from orm_ver_alt.types_donnees import Colonne, Table
 
-gen = GenerateurSQL()
+class Student(Table):
+  nom:str
+  age:int
+  note:float
 
-utilisateur = Utilisateur
-utilisateur.__nom_table__ = utilisateur.__name__
 
-utilisateur.id = 1
-utilisateur.nom = "Polo"
-utilisateur.hashpass = "rtywrgydtyqwefg"
-utilisateur.role = "admin"
-utilisateur.url_photo_profil = "/yfgyfweuf/"
-utilisateur.created_at = "1387236"
-utilisateur.recreer_token_refresh = "Polo"
+class Utilisateur(Table):
+    id: int
+    nom: str
+    hashpass: str
+    role: str
+    url_photo_profil: str
+    created_at= Colonne('TIMESTAMP')
+    refresh_token: str
+    
+class USer(Table):
+  user_nom:str
+  user_age:int
+  user_note:float
+  @classmethod
+  def __str__(self):
+    return f'je suis {self._dbtype}'  
 
-colones = utilisateur.recuperer_colones()
+class Eleve(Table):
+  echec:bool
+  id=Colonne("INT",primary=True)
+  auteur_id=Colonne('BIGINT',foreign_key=Foreign_key(table='poste',attribut='id'))
 
-print(gen.creer_table(nom_table=utilisateur.__nom_table__,colones=colones))
+e=Eleve('MySQL')
+
+u=Student('MySQL')
+u3=USer()
+u2=USer("SQLite")
+# u.recuperer_colonne()
+# u2.recuperer_colonne()
+
+
+print(u._dbtype)
+print(u2._dbtype)
+#print(Table._dbtype)
+print(u.name())
+print(u2.name())
+
+print(u3.correspondance_sql())
+print(u2.correspondance_sql())
+print(u.correspondance_sql())
+
+print(u2._dbtype)
+print(u._dbtype)
+u2.create_table()
+u.create_table()
+
+#print(e.recuperer_colonne())
+e.create_table()
+Utilisateur().create_table()

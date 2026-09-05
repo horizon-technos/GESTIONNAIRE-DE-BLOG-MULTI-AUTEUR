@@ -15,7 +15,7 @@ class MapperType:
     @classmethod
     def type_sql_correspondant(cls, type_python: Optional[Type], nom_colone: str) -> str:
         nom = nom_colone.lower()
-
+        
         # expressions et regles regex(expressions reglieres)
         if nom == "id":
             return "INTEGER"
