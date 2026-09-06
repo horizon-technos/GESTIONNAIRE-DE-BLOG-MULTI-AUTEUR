@@ -21,9 +21,7 @@ class USer(Table):
   user_nom:str
   user_age:int
   user_note:float
-  @classmethod
-  def __str__(self):
-    return f'je suis {self._dbtype}'  
+
 
 class Eleve(Table):
   echec:bool
@@ -51,18 +49,19 @@ print(u.correspondance_sql())
 
 print(u2._dbtype)
 print(u._dbtype)
-u2.create_table()
-u.create_table()
+#u2.create_table()
+#u.create_table()
 
 #print(e.recuperer_colonne())
-e.create_table()
-Utilisateur().create_table()
+print(e.create_table())
+
 
 # initialisation du driver sgbd
-driver_sgbd = DriverSGBD(dialecte='SQLite')
-driver_sgbd.connexionSGBD()
+driver_sgbd = DriverSGBD(dialecte='POSTGRES')
+driver_sgbd.connexionSGBD(user="loic",password='loic',database="data_base",host='localhost')
 
-requeteSQL = 
+requeteSQL = USer('POSTGRES').create_table()
 
 print(driver_sgbd.executer_sql(requeteSQL))
 driver_sgbd.deconnexionSGBD()
+

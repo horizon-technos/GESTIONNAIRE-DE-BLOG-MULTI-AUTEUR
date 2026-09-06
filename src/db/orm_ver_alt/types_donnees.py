@@ -104,7 +104,7 @@ class Table:
   # appelle juste la fonction pour créer la table SQL
   @classmethod
   def create_table(self):
-    self.__creation_de_la_commande_create_table(self.correspondance_sql()) 
+    return self.__creation_de_la_commande_create_table(self.correspondance_sql()) 
 
   # génère la requête qui crée la table SQL
   @classmethod
@@ -116,4 +116,6 @@ class Table:
       definitions.append(f"{key} {value}")
 
     jointure=', '.join(definitions)
-    print(f'CREATE TABLE {self.name()} ({jointure});')
+    if self._dbtype=='POSTGRES':
+      return (f'CREATE TABLE "{self.name()}" ({jointure});')
+    return (f'CREATE TABLE {self.name()} ({jointure});')
