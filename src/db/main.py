@@ -1,5 +1,6 @@
 from orm_ver_alt.utilitaires import Foreign_key
 from orm_ver_alt.types_donnees import Colonne, Table
+from orm_ver_alt.connecteur import DriverSGBD
 
 class Student(Table):
   nom:str
@@ -56,3 +57,12 @@ u.create_table()
 #print(e.recuperer_colonne())
 e.create_table()
 Utilisateur().create_table()
+
+# initialisation du driver sgbd
+driver_sgbd = DriverSGBD(dialecte='SQLite')
+driver_sgbd.connexionSGBD()
+
+requeteSQL = 
+
+print(driver_sgbd.executer_sql(requeteSQL))
+driver_sgbd.deconnexionSGBD()
