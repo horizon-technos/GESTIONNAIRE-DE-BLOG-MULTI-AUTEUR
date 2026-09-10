@@ -1,8 +1,8 @@
 # generateur de code SQL en fonction du dialecte BD
-from typing import Optional, Dict
+from typing import Dict
 
 class GenerateurSQL:
-    def __init__(self, dialecte: str = "sqlite"):
+    def __init__(self, dialecte: str):
         dialecte = dialecte.lower()
         if dialecte not in ("sqlite","postgres","mysql"):
             raise ValueError(f"Dialecte '{dialecte}' non supporté. Choisissez sqlite, postgres ou mysql.")
@@ -46,7 +46,7 @@ class GenerateurSQL:
 
         # jointure en une seule fois pas dans la boucle pour une meilleure optimisation
         jointure_complete = ", ".join(definitions)
-        return f"CREATE TABLE IF NOT EXISTS {nom_table} ({jointure_complete});"
+        return f"CREATE TABLE IF NOT EXISTS {self._guillemet_sgbd(nom_table)} ({jointure_complete});"
     
     # ajouter une colone
     def ajouter_colone(self, nom_table: str, type_colone: str, nom_colone: str) -> str:
@@ -86,3 +86,15 @@ class GenerateurSQL:
     # supprimer la table
     def retirer_table(self, nom_table: str) -> str:
         return f"DROP TABLE IF EXISTS {self._guillemet_sgbd(nom_table)};"
+    
+    # recuperer le schema de toutes les tables en fonction du sgbd
+    def recuperer_schemas_tables(self) -> str:
+        match self.dialecte:
+            case 'sqlite':
+                return "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';"
+            case 'postgres':
+                return "SELECT table_name, column_name, data_type FROM information_schema.columns WHERE table_schema = 'public' ORDER BY table_name, ordinal_position;"
+            case 'mysql':
+                return "SELECT table_name, column_name, data_type FROM informationc_schema.columns WHERE table_schema = DATABASE() ORDER BY table_name, ordinal_position;"
+            case _:
+                raise ValueError("Dialecte non supporte.")

@@ -30,23 +30,15 @@ class Utilisateur(Modele):
         self.created_at = created_at
         self.refresh_token = refresh_token
 
-    def enregistrer(self):
-        pass
-
-    def connexion(self):
-        pass
-
-    def recupere_infos(self):
-        pass
-
-    def recreer_token_refresh(self):
-        pass
-
-
 # ------------------------------------------------------------
 # 2. TAG
 # ------------------------------------------------------------
 class Tag(Modele):
+    id: int
+    nom: str
+    slug: str
+    description: str
+    
     def __init__(
         self,
         id: int,
@@ -59,23 +51,20 @@ class Tag(Modele):
         self.slug = slug
         self.description = description
 
-    def recupérer_tous(self):
-        pass
-
-    def enregistrer_tags(self):
-        pass
-
-    def recuperer_posts_tags(self, id):
-        pass
-
-    def delete_tag(self, id):
-        pass
-
-
 # ------------------------------------------------------------
 # 3. POST
 # ------------------------------------------------------------
 class Post(Modele):
+    id: int
+    slug: str
+    contenu: str
+    statut: str
+    views: int
+    tags: str
+    titre: str
+    id_auteur: int
+    created_at: str
+
     def __init__(
         self,
         id: int,
@@ -98,26 +87,18 @@ class Post(Modele):
         self.id_auteur = id_auteur
         self.created_at = created_at
 
-    def recuperer_tous(self):
-        pass
-
-    def recupere_post(self, id):
-        pass
-
-    def enregistrer(self):
-        pass
-
-    def update_post(self, id):
-        pass
-
-    def supprime_post(self, id):
-        pass
-
 
 # ------------------------------------------------------------
 # 4. COMMENTAIRE
 # ------------------------------------------------------------
 class Commentaire(Modele):
+    id: int
+    contenu: str
+    id_post: int
+    id_auteur: int
+    id_parent: int
+    created_at: str
+
     def __init__(
         self,
         id: int,
@@ -133,12 +114,3 @@ class Commentaire(Modele):
         self.id_auteur = id_auteur
         self.id_parent = id_parent
         self.created_at = created_at
-
-    def delete_comment(self, id):
-        pass
-
-    def enregistrer_commentaire(self, id_post, id):
-        pass
-
-    def recuperer_commentaire(self, id_post):
-        pass

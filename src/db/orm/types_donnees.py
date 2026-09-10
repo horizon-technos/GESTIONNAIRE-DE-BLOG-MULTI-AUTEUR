@@ -1,4 +1,4 @@
-# Mapper SQL < - > PYTHON
+# Mapper SQL <-> PYTHON
 # Permet le mappage de type de colone et nom SQL python et vice versa
 
 from typing import Type, Optional
@@ -31,4 +31,18 @@ class MapperType:
         
         if type_python in cls._PYTHON_A_SQL:
             return cls._PYTHON_A_SQL[type_python]
+        
+    @classmethod
+    def type_python_correspondant(cls, type_sql: str) -> Type:
+        match type_sql:
+            case 'INTEGER':
+                return int
+            case 'REAL':
+                return float
+            case 'TEXT':
+                return str
+            case 'BOOLEAN':
+                return bool
+            case _:
+                raise ValueError("Type SQL non pris en charge pour le moment.")
         
