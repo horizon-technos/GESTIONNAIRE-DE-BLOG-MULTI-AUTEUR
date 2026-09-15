@@ -9,6 +9,8 @@ class Utilisateur(Modele):
     hashpass: str
     role: str
     url_photo_profil: str
+    email:str
+    bio:str
     created_at: str
     refresh_token: str
     
